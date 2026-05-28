@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Meu primeiro deploy automatizado</title>
+
     <style>
       :root {
         --bg: #f5f7fb;
@@ -31,7 +33,7 @@
         padding: 2rem;
         border-radius: 14px;
         box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
-        max-width: 640px;
+        max-width: 760px;
         text-align: center;
       }
 
@@ -40,18 +42,71 @@
         color: var(--accent);
       }
 
+      .badge {
+        display: inline-block;
+        padding: .5rem 1rem;
+        border-radius: 999px;
+        background: #ccfbf1;
+        color: #115e59;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .card {
+        background: #f8fafc;
+        padding: 1rem;
+        border-radius: 12px;
+      }
+
       p {
         line-height: 1.6;
       }
     </style>
   </head>
+
   <body>
     <main>
+
+      <div class="badge">
+        CI/CD Status: SUCCESS ✅
+      </div>
+
       <h1>Meu primeiro deploy automatizado</h1>
+
       <p>
-        Esta pagina foi publicada automaticamente usando GitHub Actions com pipeline
-        de CI/CD.
+        Esta página foi publicada automaticamente usando GitHub Actions.
       </p>
+
+      <p>
+        Simulação de workflow DevOps com CI, CD, Pull Request e deploy automatizado.
+      </p>
+
+      <section class="cards">
+
+        <div class="card">
+          <h3>CI</h3>
+          <p>Build, testes e validações automáticas.</p>
+        </div>
+
+        <div class="card">
+          <h3>CD</h3>
+          <p>Deploy automático no GitHub Pages.</p>
+        </div>
+
+        <div class="card">
+          <h3>DevOps</h3>
+          <p>Fluxo baseado em branches, PR e automação.</p>
+        </div>
+
+      </section>
+
     </main>
   </body>
 </html>
