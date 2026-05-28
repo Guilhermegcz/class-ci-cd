@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+
+      - name: Validar estrutura minima
+        run: |
+          test -d site
+          test -f site/index.html
+
+      - name: Rodar testes simples
+        run: |
+          grep -q "Meu primeiro deploy automatizado" site/index.html
+          grep -q "<!doctype html>" site/index.html
+
+      - name: Gerar metricas do pipeline
+        run: |
+          mkdir -p artifacts
+          echo "Data de execucao: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" > artifacts/relatorio.txt
+          echo "Total de arquivos no projeto: $(find . -type f | wc -l)" >> artifacts/relatorio.txt
+          echo "Tamanho de site/index.html (bytes): $(wc -c < site/index.html)" >> artifacts/relatorio.txt
+
+      - name: Publicar artefatos de CI
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-ci
+          path: artifacts/relatorio.txt
